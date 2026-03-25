@@ -1,7 +1,13 @@
+name: Gradle Package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    # This line tells GitHub to run all 'run' commands inside the subfolder
     defaults:
       run:
         working-directory: SaveManager 
@@ -25,7 +31,6 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
       with:
-        # We also need to tell the Gradle action where the build file is
         build-root-directory: SaveManager
 
     - name: Build with Gradle
@@ -36,4 +41,5 @@ jobs:
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 # Trigger Sync
