@@ -1,13 +1,11 @@
-name: Gradle Package
-
-on:
-  release:
-    types: [created]
-  workflow_dispatch: # Allows manual triggering via GitHub CLI or Web UI
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    # This line tells GitHub to run all 'run' commands inside the subfolder
+    defaults:
+      run:
+        working-directory: SaveManager 
+
     permissions:
       contents: read
       packages: write
@@ -21,18 +19,19 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        # server-id and settings-path are required for 'gradle publish' to work with GitHub Packages
         server-id: github 
         settings-path: ${{ github.workspace }}
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
+      with:
+        # We also need to tell the Gradle action where the build file is
+        build-root-directory: SaveManager
 
     - name: Build with Gradle
       run: ./gradlew build
 
     - name: Publish to GitHub Packages
-      # This runs the 'publish' task. Ensure your build.gradle has a publishing block.
       run: ./gradlew publish
       env:
         USERNAME: ${{ github.actor }}
