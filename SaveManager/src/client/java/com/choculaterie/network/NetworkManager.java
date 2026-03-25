@@ -155,7 +155,7 @@ public class NetworkManager {
         return CompletableFuture.supplyAsync(() -> {
             HttpURLConnection conn = null;
             try {
-                URL url = new URL(uploadBase + API_BASE_PATH + "/upload");
+                URL url = URI.create(uploadBase + API_BASE_PATH + "/upload").toURL();
                 conn = (HttpURLConnection) url.openConnection();
                 if (conn instanceof HttpsURLConnection https) {
                     try {
