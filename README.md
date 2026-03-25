@@ -1,3 +1,4 @@
+[![.github/workflows/gradle-publish.yml](https://github.com/CephandriusMaxtori/SaveManager/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/CephandriusMaxtori/SaveManager/actions/workflows/gradle-publish.yml)
 # Public Repo For The SaveManager Mod
 https://modrinth.com/mod/
 
