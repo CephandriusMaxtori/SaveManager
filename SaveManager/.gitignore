@@ -23,6 +23,7 @@ classes/
 bin/
 .classpath
 .project
+*.deb
 
 # macos
 
@@ -38,3 +39,4 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+^C
