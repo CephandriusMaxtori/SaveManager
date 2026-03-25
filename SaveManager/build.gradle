@@ -17,9 +17,9 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
-    maven { url "https://maven.fabricmc.net/" }
+    maven { url = "https://maven.fabricmc.net/" }
 	mavenCentral()
-	maven { url 'https://repo.spongepowered.org/maven' }
+	maven { url = 'https://repo.spongepowered.org/maven' }
 }
 
 loom {
@@ -44,7 +44,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
 	// Mixin annotation processor with all dependencies
-	annotationProcessor(group: 'org.spongepowered', name: 'mixin', version: '0.8.7', classifier: 'processor')
+	annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 	// ASM is required by mixin annotation processor
 	annotationProcessor "org.ow2.asm:asm:9.7"
 	annotationProcessor "org.ow2.asm:asm-tree:9.7"
@@ -63,7 +63,7 @@ processResources {
 	inputs.property "version", project.version
 
 	// Include any generated mixin refmap produced by the annotation processor (client-*-refmap.json)
-	from("${buildDir}/classes/java/client") {
+	from(layout.buildDirectory.dir("classes/java/client")) {
 		include 'client-*refmap.json'
 		rename { String f -> 'savemanager.refmap.json' }
 	}
